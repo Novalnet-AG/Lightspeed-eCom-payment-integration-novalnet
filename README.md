@@ -59,7 +59,7 @@ If you have any inquiries, please contact one of the following departments:
 technic@novalnet.de<br>
 +49 89 9230683-19<br>
 ### Sales team
-sales@novalnet.About Novalnet AGde<br>
+sales@novalnet.de<br>
 +49 89 9230683-20<br>
 
 ## About Novalnet AG
