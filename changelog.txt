@@ -1,13 +1,13 @@
 **** Change Log ***
 
-= 2.0.1 - 2020.10.21 =
+= 2.0.1 - 2020.12.15 =
 
 * Fix        - Allowed to access Novalnet global configuration page from any host of lightspeed eCom 
 * Enhanced   - Adapted new order status with the name "PREP IN-STORE PICKUP"
 * Enhanced   - Updated Barzahlen payment with new logo and name
     
 
-= 2.0.0 - 2020.07.27 =
+= 2.0.0 - 2020.01.23 =
 
 * New          - Option to enable/disable particular payment methods on the checkout page
 * New          - Payment guarantee configuration implemented
@@ -15,12 +15,12 @@
 * Enhanced     - Tooltip descriptions updated
 
 
-= 1.0.1 - 2019.12.13 =
+= 1.0.1 - 2019.11.21 =
 
 * Fix          - Buyer need not enter the customer details again in the Payment form
 
 
-= 1.0.0 - 2019.07.23 =
+= 1.0.0 - 2019.07.25 =
 
 *              - New release
 
