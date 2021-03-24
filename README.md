@@ -50,6 +50,17 @@ The following services are integrated with Novalnet’s Lightspeed app:
 -	Direct Debit SEPA with payment guarantee
 -	Invoice with payment guarantee
 
+## App Installation
+To install the Novalnet Payment app, please go to your Lightspeed eCom shop system and follow the steps below:
+### Step 1
+Login to shop backend and navigate to *Apps &#8594; App Store*
+### Step 2
+Search for Novalnet payment app and install it
+### Step 3 
+Configure the payment app in the shop backend
+### Step 4 
+Activate the preferred payment methods for the Lightspeed shop
+
 ## License
 See our License Agreement at: https://www.novalnet.com/payment-plugins/free/license
 
