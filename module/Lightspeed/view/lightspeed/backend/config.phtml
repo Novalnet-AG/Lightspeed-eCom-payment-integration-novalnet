@@ -1,0 +1,406 @@
+<?php
+/**
+ * Novalnet payment module
+ *
+ * This module is used for real time processing of Novalnet transaction of customers.
+ *
+ * This free contribution made by request.
+ * If you have found this script useful a small
+ * recommendation as well as a comment on merchant form
+ * would be greatly appreciated.
+ *
+ * @author    Novalnet AG
+ * @copyright Copyright by Novalnet
+ * @license   https://www.novalnet.de/payment-plugins/kostenlos/lizenz
+ *
+ * Script: config.phtml
+ */
+
+
+/**
+ * Render the payment fields
+ *
+ * @param  payment
+ * @param  form_obj
+ * @param  form
+ * @param  fields
+ *
+ * @return none
+ */
+function render_field($payment, $form_obj, $form, $fields, $translator, $language){
+    echo'
+        <div class="form-group row">'.
+            $form_obj->formLabel($form->get($payment.$fields))
+            .'<div class="col-xs-12 col-sm-12 col-md-8">'.
+            $form_obj->formElement($form->get($payment.$fields))
+            .'</div><div class="col-md-4"></div><div class = "config_error col-xs-12 col-sm-12 col-md-8">';
+            $error = $form_obj->formElementErrors()->render($form->get($payment.$fields), ['class' => 'help-block']);
+            if(!empty($error)){
+                 echo $translator->translate('valid_error', '', $language);
+            }
+          echo '</div></div>';
+}
+
+/**
+ * Render the global configuration fields
+ *
+ * @param  payment
+ * @param  form_obj
+ * @param  form
+ * @param  fields
+ *
+ * @return none
+ */
+function render_global_field($form_obj, $form, $fields, $translator, $language){
+    echo'
+        <div class="form-group row">'.
+            $form_obj->formLabel($form->get($fields))
+            .'<div class="col-xs-12 col-sm-12 col-md-8">'.
+            $form_obj->formElement($form->get($fields))
+            .'</div><div class="col-md-4"></div><div class = "config_error col-xs-12 col-sm-12 col-md-8">';
+            $error = $form_obj->formElementErrors()->render($form->get($fields), ['class' => 'help-block']);
+            if(!empty($error)){
+                if($fields != 'api_key' || $fields != 'tariff'){
+                    echo $translator->translate('valid_error', '', $language);
+                }else{
+                    echo $translator->translate('config_error', '', $language);
+                }
+            }
+        echo '</div></div>';
+}
+
+/**
+ * Render the payment method configuration fields
+ *
+ * @param  payment
+ * @param  form_obj
+ * @param  form
+ * @param  fields
+ *
+ * @return none
+ */
+function render_payment_method_field($form_obj, $form, $fields, $translator, $language){
+    echo'
+        <div class="form-group row"><div class="col-xs-12 col-sm-12 col-md-12">'.
+            $form_obj->formElement($form->get($fields))
+            .'</div><div class="col-md-4"></div><div class = "config_error col-md-8">';
+            $error = $form_obj->formElementErrors()->render($form->get($fields), ['class' => 'help-block']);
+            if(!empty($error)){
+                if($fields == 'gateway'){
+                    echo $translator->translate('valid_error', '', $language);
+                }else{
+                    echo $translator->translate('config_error', '', $language);
+                }
+            }
+        echo '</div></div>';
+}
+
+/**
+ * Prepare payment fields
+ *
+ * @param  payment
+ * @param  form_obj
+ * @param  form
+ *
+ * @return none
+ */
+function fields($payment, $form_obj, $form, $translator, $language)
+{
+	if($payment == 'novalnet_cc'){
+        render_field($payment, $form_obj, $form, '_enforce_3d', $translator, $language);
+    }
+    
+	if (in_array($payment, array('novalnet_invoice', 'novalnet_sepa'))) {
+		$fields = array( '_due_date', '_enable_guarantee', '_guarantee_minimum_amount', '_enable_force_guarantee');
+		foreach($fields as $field){
+			render_field($payment, $form_obj, $form, $field, $translator, $language);
+		}
+	}
+
+	if ($payment == 'novalnet_barzahlen') {
+		render_field($payment, $form_obj, $form, '_due_date', $translator, $language);
+	}
+}
+
+/**
+ * Prepare global configuration fields
+ *
+ * @param  form_obj
+ * @param  form
+ * @param  translator
+ * @param  language
+ *
+ * @return none
+ */
+function general_fields($form_obj, $form, $translator, $language)
+{
+    $config_fields = array('api_key', 'tariff','test_mode','payment_action','manual_check_limit', 'gateway', 'referrer');
+    foreach($config_fields as $field){
+        render_global_field($form_obj, $form, $field, $translator, $language);
+    }
+
+}
+
+/**
+ * Prepare global configuration fields
+ *
+ * @param  form_obj
+ * @param  form
+ * @param  translator
+ * @param  language
+ *
+ * @return none
+ */
+function payment_fields($form_obj, $form, $translator, $language)
+{
+    $config_fields = array('payment_gateways_list');
+    foreach($config_fields as $field){
+        render_payment_method_field($form_obj, $form, $field, $translator, $language);
+    }
+
+}
+
+/**
+ * Prepare onhold management fields
+ *
+ * @param  form_obj
+ * @param  form
+ * @param  translator
+ * @param  language
+ *
+ * @return none
+ */
+function onhold_mng_fields($form_obj, $form, $translator, $language)
+{
+    $fields = array('confirmation_order_status', 'pending_order_status', 'callback_order_status', 'payment_confirmation_order_status', 'cancellation_order_status');
+    foreach($fields as $field){
+        render_global_field($form_obj, $form, $field, $translator, $language);
+    }
+
+}
+
+/**
+ * Prepare callback fields
+ *
+ * @param  form_obj
+ * @param  form
+ * @param  translator
+ * @param  language
+ *
+ * @return none
+ */
+function callback_fields($form_obj, $form, $translator, $language)
+{
+    $fields = array('deactivate_ip_check','callback_mail_notification','callback_mail_to', 'callback_mail_bcc', 'callback_url');
+    foreach($fields as $field){
+        render_global_field($form_obj, $form, $field, $translator, $language);
+    }
+
+}
+
+
+$form->get('tariff_val')->setValue($form->get('tariff')->getValue());
+$gateway = $form->get('gateway')->getValue();
+
+if(empty($gateway)){
+    $form->get('gateway')->setValue('240');
+}
+$language = (!empty($lang) && $lang == 'de') ? 'de_DE' : 'en_US';
+$form->get('guarntee_minimum_amount_error')->setValue($translator->translate("guarntee_minimum_amount_error", "", $language));
+$form->get('invoice_due_date_error')->setValue($translator->translate("invoice_due_date_error", "", $language));
+$form->get('sepa_due_date_error')->setValue($translator->translate("sepa_due_date_error", "", $language));
+$form->get('config_error_desc')->setValue($translator->translate("config_error", "", $language));
+$form->get('mail_error')->setValue($translator->translate("mail_error", "", $language));
+$submit = $form->get('submit');
+$form->setAttribute('action', $this->url('backend', ['action' => 'config', 'id' => $id ,'signature' => $hash, 'lang' => $lang]));
+$form->prepare();
+
+$this->headTitle($translator->translate('global_configuration', '', $language));
+$lang = (!empty($lang) && $lang == 'de') ? 'de' : 'en';
+echo '<div class="image-container">
+        <div class="container-fluid">
+            <div class="row card" id="nn_config_container">
+                <div class="col-sm-12">
+                    <div class="panel">';
+
+$this->headScript()->appendFile('/js/backend.js');
+
+
+
+echo $this->form()->openTag($form);
+if(isset($success) && $success == 1){?>
+    <input type = "hidden" value = "<?= $translator->translate('success_message', '', $language) ?>" id = "success_msg">
+<?php }
+if(isset($failure) && $failure == 1) {
+    $error = $this->formElementErrors()->render($form->get('csrf'), ['class' => 'help-block']);
+    $error_msg = !empty($error) ? PHP_EOL.$translator->translate('session_timeout', '', $language) : $translator->translate('error_message', '', $language);
+    ?>
+    <input type = "hidden" value = "<?= $error_msg ?>" id = "error_message">
+
+ <?php }?>
+                    <div class = "image-div"><a class="novalnet-image" href="<?= $translator->translate('novalnet_url', '', $language) ?>" target="_blank" rel="noopener noreferrer"><img src="/img/novalnet-logo.svg" alt="novalnet" width="200"></a></div>
+                    <div class="alert alert-info"><p class="welcome"><?= $translator->translate('admin_portal_desc', '', $language);?></p></div>
+                    <div class="tab" role="tabpanel">
+                        <ul class="nav nav-tabs col-xs-12 col-sm-4 col-md-3" role="tablist" id ="nav-tabs">
+                            <li class="active"><a href="#nn_global_config" class="global_cfg" data-toggle="tab"><?= $translator->translate('global_configuration', '', $language);?></a></li>
+                            <li><a href="#nn_payment_gateways" class="payments_cfg" data-toggle="tab"><?= $translator->translate('payment_gateways', '', $language);?></a></li>
+                            <li><a href="#payment_config" class="payment_cfg" data-toggle="tab"><?= $translator->translate('payment_configuration', '', $language);?></a></li>
+                            <li><a href="#status_config" class="status" data-toggle="tab"><?= $translator->translate('status_config', '', $language);?></a></li>
+                            <li><a href="#callback_config" class="callback" data-toggle="tab"><?= $translator->translate('merchant_config', '', $language);?></a></li>
+                            <li><a href="#updates_config" class="updates" data-toggle="tab"><?= $translator->translate('updates', '', $language);?></a></li>
+                        </ul>
+                        <div class="tab-content tabs col-xs-12 col-sm-8 col-md-9">
+                            <div role="tabpanel" class="tab-pane fade in active" id="nn_global_config">
+                                <?= general_fields($this, $form, $translator, $language);
+                                ?>
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="nn_payment_gateways">
+                                <div class="col-xs-12 col-sm-12 col-md-12 form-group payment_gateway_desc">
+                                    <?= $translator->translate('novalnet_payment_gateways_lable', '', $language); ?>
+                                </div>
+                                <?= payment_fields($this, $form, $translator, $language);
+                                ?>
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="payment_config">
+								<div class="box box-solid nn-payment-box">
+                                    <div class="box-body">
+                                        <div class="nn-payment-container col-xs-12 col-sm-12 col-md-12 row payment-heading">
+                                           <?= $translator->translate('credit_card', '', $language);?>
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="clearfix">
+                                                <?= fields('novalnet_cc', $this, $form, $translator, $language); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box box-solid nn-payment-box">
+                                    <div class="box-body">
+                                        <div class="nn-payment-container col-xs-12 col-sm-12 col-md-12 row payment-heading">
+                                           <?= $translator->translate('sepa', '', $language);?>
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="clearfix">
+                                                <?= fields('novalnet_sepa', $this, $form, $translator, $language); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box box-solid nn-payment-box">
+                                    <div class="box-body">
+                                        <div class="nn-payment-container col-xs-12 col-sm-12 col-md-12 row payment-heading">
+                                           <?= $translator->translate('invoice', '', $language);?>
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="clearfix">
+                                                <?= fields('novalnet_invoice', $this, $form, $translator, $language); ?>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box box-solid nn-payment-box">
+                                    <div class="box-body">
+                                        <div class="nn-payment-container col-xs-12 col-sm-12 col-md-12 row payment-heading">
+                                           Barzahlen/viacash
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="clearfix">
+                                                <?= fields('novalnet_barzahlen', $this, $form, $translator, $language); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="status_config">
+                                <?= onhold_mng_fields($this, $form, $translator, $language); ?>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="callback_config">
+                                <?= callback_fields($this, $form, $translator, $language); ?>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="updates_config">
+                                 <div id="nn_updates" class="panel">
+
+                                            <div>
+                                                <center><b><span class="nn_heading"><?= $translator->translate('module_version', '', $language);?></span></b></center>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <span class="nn_sub_heading"><?= $translator->translate('new', '', $language);?></span>
+                                            &nbsp;<br>
+                                 <div class="row nn_split_content">
+                                     <div class="col-xs-12 col-sm-12 col-md-12 nn_info_container">
+                                            <span class="nn_sub_heading"><?= $translator->translate('product_key', '', $language);?></span>
+                                            <p class="nn_content nn_li_content"><?= $translator->translate('product_key_desc1', '', $language);?> </p>
+                                            <p class="nn_content nn_li_content">
+                                                <?= $translator->translate('product_key_desc2', '', $language);?>
+                                            </p>
+                                        </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <img src="/img/lightspeed_adminportal_<?= $lang ?>.png" alt="novalnet" class="nn_update_logo"/>
+                        &nbsp;
+                        <img src="/img/product_activation_key_<?= $lang ?>.png" alt="novalnet" class="nn_update_logo"/>
+                        &nbsp;
+
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="row nn_split_content">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 nn_info_container">
+                                            <span class="nn_sub_heading"><?= $translator->translate('vendor_script', '', $language);?></span>
+                                            <p class="nn_content nn_li_content"><?= $translator->translate('vendor_script_desc1', '', $language);?> </p>
+                                            <p class="nn_content nn_li_content"><?= $translator->translate('vendor_script_desc2', '', $language);?> </p>
+                                            <p class="nn_content nn_li_content"><?= $translator->translate('vendor_script_desc3', '', $language);?>
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <img src="/img/lightspeed_adminportal_<?= $lang ?>.png" alt="novalnet" class="nn_update_logo"/>
+                                            &nbsp;
+                                            <img src="/img/vendor_script_configuration_<?= $lang ?>.png" alt="novalnet" class="nn_update_logo"/>
+                                            &nbsp;
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="row nn_split_content">
+                                         <div class="col-xs-12 col-sm-12 col-md-12 nn_info_container">
+                                            <span class="nn_sub_heading">PAYPAL</span>
+                                            <p class="nn_content nn_li_content"><?= $translator->translate('paypal_desc1', '', $language);?>  </p>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <img src="/img/lightspeed_adminportal_<?= $lang ?>.png" alt="novalnet" class="nn_update_logo"/>
+                                            &nbsp;
+                                            <img src="/img/paypal_config_home_<?= $lang ?>.png" alt="novalnet" class="nn_update_logo"/>
+                                            &nbsp;
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <?php echo $this->formSubmit($submit); ?>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<?php
+echo $this->formElement($form->get('csrf'));
+echo $this->formHidden($form->get('shop_id'));
+echo $this->formHidden($form->get('auth_validate'));
+echo $this->formHidden($form->get('vendor'));
+echo $this->formHidden($form->get('access_key'));
+echo $this->formHidden($form->get('auth_code'));
+echo $this->formHidden($form->get('product'));
+echo $this->formHidden($form->get('guarntee_minimum_amount_error'));
+echo $this->formHidden($form->get('invoice_due_date_error'));
+echo $this->formHidden($form->get('tariff_val'));
+echo $this->formHidden($form->get('sepa_due_date_error'));
+echo $this->formHidden($form->get('config_error_desc'));
+echo $this->formHidden($form->get('mail_error'));
+echo $this->form()->closeTag();

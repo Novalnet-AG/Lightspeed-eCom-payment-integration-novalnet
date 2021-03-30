@@ -1,0 +1,34 @@
+<?php
+/**
+ * Novalnet payment module
+ *
+ * This module is used for real time processing of Novalnet transaction of customers.
+ *
+ * This free contribution made by request.
+ * If you have found this script useful a small
+ * recommendation as well as a comment on merchant form
+ * would be greatly appreciated.
+ *
+ * @author    Novalnet AG
+ * @copyright Copyright by Novalnet
+ * @license   https://www.novalnet.de/payment-plugins/kostenlos/lizenz
+ *
+ * Script: config.phtml
+ */
+ $this->headScript()->appendFile('/js/backend.js');
+?>
+<div class="container">
+	<div class="modal fade in" id="modalsessionexpire" tabindex="-1" role="dialog" aria-labelledby="modelSessionExpiry"
+	  aria-hidden="true" data-backdrop="true">
+	   <div class="modal-dialog modal-lg">
+		  <div class="modal-content">
+			 <div class="modal-header">
+				<h4 class="modal-title">Information</h4>
+			 </div>
+			 <div class="modal-body">
+				<p><?php echo $msg;?></p>
+			 </div>
+		  </div>
+	   </div>
+	</div>	
+</div>

@@ -1,0 +1,52 @@
+<?php
+/**
+ * Novalnet payment module
+ *
+ * This module is used for real time processing of Novalnet transaction of customers.
+ *
+ * This free contribution made by request.
+ * If you have found this script useful a small
+ * recommendation as well as a comment on merchant form
+ * would be greatly appreciated.
+ *
+ * @author    Novalnet AG
+ * @copyright Copyright by Novalnet
+ * @license   https://www.novalnet.de/payment-plugins/kostenlos/lizenz
+ *
+ * Script: layout.phtml
+ */
+?>
+
+<?= $this->doctype() ?>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="robots" content="noindex,nofollow" />
+        <?= $this->headTitle('Novalnet')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?= $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+            ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+            ->prependStylesheet($this->basePath('bower_components/Ionicons/css/ionicons.min.css'))
+            ->prependStylesheet($this->basePath('bower_components/font-awesome/css/font-awesome.min.css'))
+            ->prependStylesheet($this->basePath('css/AdminLTE.min.css'))
+            ->prependStylesheet($this->basePath('css/util.css'))
+            ->prependStylesheet($this->basePath('css/main.css'))
+        ?>
+        <!-- Scripts -->
+        <?= $this->headScript()
+            ->prependFile($this->basePath('js/bootstrap.min.js'))
+            ->prependFile($this->basePath('js/notify.min.js'))
+            ->prependFile($this->basePath('js/jquery.min.js'))
+        ?>
+    </head>
+    <body>
+        <div id="loader-mask"><div class="loader"></div></div>
+        <div class="loader"></div>
+        <?= $this->content ?>
+    </body>
+</html>
