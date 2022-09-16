@@ -1,11 +1,20 @@
 *** Change Log ***
 
+= 2.1.0 - 2022.09.16 =
+
+* New - Implemented Online bank transfer payment
+* New -  Implemented enforce 3D secure payment for countries outside EU
+* Enhanced - Order status has been optimized as per shop default structure
+* Enhanced - Barzahlen/viacash payment name and logo
+* Enhanced - Updated payment logo for Sofort payment
+* Removed  - Gateway timeout configuration
+* Removed  - Referrer ID configuration 
+
 = 2.0.1 - 2020.12.15 =
 
 * Fix        - Allowed to access Novalnet global configuration page from any host of lightspeed eCom 
 * Enhanced   - Adapted new order status with the name "PREP IN-STORE PICKUP"
 * Enhanced   - Updated Barzahlen payment with new logo and name
-    
 
 = 2.0.0 - 2020.01.23 =
 
@@ -14,13 +23,10 @@
 * Enhanced    - English and German texts updated
 * Enhanced    - Tooltip descriptions updated
 
-
 = 1.0.1 - 2019.11.21 =
 
 * Fix         - Buyer need not enter the customer details again in the Payment form
 
-
 = 1.0.0 - 2019.07.25 =
 
 *             - New release
-
