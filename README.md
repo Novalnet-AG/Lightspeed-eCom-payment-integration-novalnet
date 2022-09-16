@@ -3,52 +3,46 @@ Novalnet payment app for Lightspeed eCom simplifies your daily work by automatin
 
 ## Why Lightspeed eCom with Novalnet?
 Lightspeed is a cloud-based point of sale (POS) solution. Lightspeed offers a fully integrated, e-commerce solution that allows customers to manage in-store and online inventory, have a single view of customers and analyze multi-channel sales data.
-The following services are integrated with Novalnet’s Lightspeed app:
-- Debt collection
--	Risk management
--	Member management
--	Subscription management
--	Affiliate program
--	Real-time monitoring
--	Detailed statistics & report etc.
 
-## Advantages
+## Key features and Advantages:
+-	Seamless and fast integration of the payment application
+-	Secure SSL- encoded gateways
+-	Credit/Debit Cards with 3D Secure
+-	On-hold transaction configuration done in the shop admin panel
+-	Responsive templates
+
 -	Easy configuration for all payment methods
 -	One platform for all relevant payment types and related services
 -	Complete automation of all payment processes
 -	More than 50 fraud prevention modules integrated to prevent risk in real-time
 -	Effortless configuration of risk management with fraud prevention
--	Comprehensive affiliate system with automated split conversion of transaction on revenue sharing
 -	No PCI DSS certification required when using our payment app
 -	Real-time monitoring of the transaction flow from the checkout to the receivables
 -	Multilevel claims management with integrated handover to collection and various export functions for the accounting
 -	Automated e-mail notification function concerning payment status reports
 -	Clear real-time overview and monitoring of payment status
-- Automated bookkeeping report in XML, SOAP, CSV, MT940
-
-## Key Features
--	Seamless and fast integration of the payment application
+-	Automated bookkeeping report in XML, SOAP, CSV, MT940
+-	Seamless and fast integration of the payment app
 -	Secure SSL- encoded gateways
--	Credit Card with 3D Secure
--	Gateway timeout can be defined
--	Referrer ID can be defined
--	On-hold transaction configuration done in the shop admin panel
+-	Credit/Debit Cards with 3D Secure
+-	On-hold transaction configuration in the shop admin panel
 -	Responsive templates
 
 ## Supported payment methods
--	Direct Debit SEPA
--	Credit Card 
--	Invoice
--	Prepayment
--	Barzahlen/viacash
--	Instant Bank Transfer
--	PayPal
--	iDEAL
--	eps
--	giropay
--	Przelewy24
--	Direct Debit SEPA with payment guarantee
--	Invoice with payment guarantee
+- Direct Debit SEPA
+- Credit/Debit Cards
+- Invoice
+- Prepayment
+- Invoice with payment guarantee
+- Direct Debit SEPA with payment guarantee
+- iDEAL
+- Sofort
+- giropay
+- Barzahlen/viacash
+- Przelewy24
+- eps
+- PayPal
+- Online bank transfer
 
 ## App Installation
 To install the Novalnet Payment app, please go to your Lightspeed eCom shop system and follow the steps below:
