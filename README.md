@@ -56,7 +56,7 @@ Configure the payment app in the shop backend
 Activate the preferred payment methods for the Lightspeed shop
 
 ## License
-See our License Agreement at: https://www.novalnet.com/payment-plugins/free/license
+See our License Agreement at: https://www.novalnet.com/payment-plugins-free-license/
 
 ## Documentation & Support
 If you have any inquiries, please contact one of the following departments:
@@ -71,5 +71,3 @@ sales@novalnet.de<br>
 <p> <a href="https://www.novalnet.de/zahlungsinstitut"> Novalnet AG </a> is a leading financial services institution offering online gateways for processing of online payments. Operating in the market as a full payment service provider Novalnet AG provides online merchants user-friendly payment integration with all major shop systems and self-programmed sites.</p>
 <p>Accept, manage and monitor payments all on one platform with one single contract!</p>
 <p>Our SaaS engine is <a href="https://www.novalnet.de/pci-dss-zertifizierung"> PCI DSS </a> certified and designed to enable real-time risk management, secured payments via escrow accounts, efficient receivables management, dynamic member and subscription management, customized payment solutions for various business models (e.g. marketplaces, affiliate programs etc.) etc.</p>
-
-
