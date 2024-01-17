@@ -5,12 +5,6 @@ Novalnet payment app for Lightspeed eCom simplifies your daily work by automatin
 Lightspeed is a cloud-based point of sale (POS) solution. Lightspeed offers a fully integrated, e-commerce solution that allows customers to manage in-store and online inventory, have a single view of customers and analyze multi-channel sales data.
 
 ## Key features and Advantages:
--	Seamless and fast integration of the payment application
--	Secure SSL- encoded gateways
--	Credit/Debit Cards with 3D Secure
--	On-hold transaction configuration done in the shop admin panel
--	Responsive templates
-
 -	Easy configuration for all payment methods
 -	One platform for all relevant payment types and related services
 -	Complete automation of all payment processes
@@ -30,7 +24,10 @@ Lightspeed is a cloud-based point of sale (POS) solution. Lightspeed offers a fu
 
 ## Supported payment methods
 - Direct Debit SEPA
+- Direct Debit ACH
 - Credit/Debit Cards
+- Apple Pay
+- Google Pay
 - Invoice
 - Prepayment
 - Invoice with payment guarantee
@@ -42,10 +39,20 @@ Lightspeed is a cloud-based point of sale (POS) solution. Lightspeed offers a fu
 - Przelewy24
 - eps
 - PayPal
+- PostFinance Card
+- PostFinance E-Finance
+- Bancontact
+- Multibanco
 - Online bank transfer
+- Alipay
+- WeChat Pay
+- Trustly
+- Blik
+- Payconiq
 
 ## App Installation
 To install the Novalnet Payment app, please go to your Lightspeed eCom shop system and follow the steps below:
+
 ### Step 1
 Login to shop backend and navigate to *Apps &#8594; App Store*
 ### Step 2
