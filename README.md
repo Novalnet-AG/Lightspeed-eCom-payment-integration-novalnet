@@ -51,7 +51,7 @@ Lightspeed is a cloud-based point of sale (POS) solution. Lightspeed offers a fu
 - Payconiq
 
 ## App Installation
-To install the Novalnet Payment app, please go to your Lightspeed eCom shop system and follow the steps below:
+To install the Lightspeed eCom Novalnet Payment app, please go to your Lightspeed eCom shop system and follow the steps below:
 
 ### Step 1
 Login to shop backend and navigate to *Apps &#8594; App Store*
@@ -66,13 +66,16 @@ Activate the preferred payment methods for the Lightspeed shop
 See our License Agreement at: https://www.novalnet.com/payment-plugins-free-license/
 
 ## Documentation & Support
-If you have any inquiries, please contact one of the following departments:
-### Technical support
-technic@novalnet.de<br>
-+49 89 9230683-19<br>
-### Sales team
-sales@novalnet.de<br>
-+49 89 9230683-20<br>
+For more information about the Lightspeed eCom Payment App Integration by Novalnet, please get in touch with us: <a href="mailto:sales@novalnet.de"> sales@novalnet.de </a> or +49 89 9230683-20<br>
+
+Novalnet AG<br>
+Zahlungsinstitut (ZAG)<br>
+Gutenbergstraße 7<br>
+D-85748 Garching<br>
+Deutschland<br>
+E-mail: sales@novalnet.de<br>
+Tel: +49 89 9230683-20<br>
+Web: www.novalnet.de
 
 ## About Novalnet AG
 <p> <a href="https://www.novalnet.de/zahlungsinstitut"> Novalnet AG </a> is a leading financial services institution offering online gateways for processing of online payments. Operating in the market as a full payment service provider Novalnet AG provides online merchants user-friendly payment integration with all major shop systems and self-programmed sites.</p>
