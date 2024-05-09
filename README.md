@@ -20,6 +20,7 @@ Lightspeed is a cloud-based point of sale (POS) solution. Lightspeed offers a fu
 -	Secure SSL- encoded gateways
 -	Credit/Debit Cards with 3D Secure
 -	On-hold transaction configuration in the shop admin panel
+- Refund option for various payment types
 -	Responsive templates
 
 ## Supported payment methods
