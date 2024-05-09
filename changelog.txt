@@ -1,5 +1,11 @@
 *** Change Log ***
 
+= 3.0.0 - 2024.05.09 =
+* New - Payment app built with a new v2 API structure with enhanced features with better usability
+* New - Payment App now supports the shop-based refund feature
+* Enhanced - Optimized the Callback/Webhook process for fetching Dynamic IP
+* Enhanced - Built-in Sub-Resource Integrity (SRI) integrated for JavaScript files to improve security for preventing unauthorized modifications  
+
 = 2.2.0 - 2024.01.17 =
 * New   - Implemented Direct Debit ACH, Apple Pay, Google Pay, PostFinance Card, PostFinance E-Finance, Bancontact, Multibanco, Alipay, WeChat Pay, Trustly, Blik, Payconiq and MB Way payments 
 
