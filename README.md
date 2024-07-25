@@ -35,7 +35,6 @@ Lightspeed is a cloud-based point of sale (POS) solution. Lightspeed offers a fu
 - Direct Debit SEPA with payment guarantee
 - iDEAL
 - Sofort
-- giropay
 - Barzahlen/viacash
 - Przelewy24
 - eps
@@ -50,6 +49,7 @@ Lightspeed is a cloud-based point of sale (POS) solution. Lightspeed offers a fu
 - Trustly
 - Blik
 - Payconiq
+- TWINT
 
 ## App Installation
 To install the Lightspeed eCom Novalnet Payment app, please go to your Lightspeed eCom shop system and follow the steps below:
